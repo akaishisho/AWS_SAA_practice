@@ -1,0 +1,140 @@
+#第1章 AWS認定試験
+
+##1-1 AWS認定試験の概要
+
+### AWS認定ソリューションアーキテクト　-アソシエイト
+- AWS認定ソリューションアーキテクトには、AWSのサービスを適切に選択し、可用性・拡張性・コストなどシステムに必要な要件を満たした設計をする能力が求められる。
+
+### 出題範囲と割合
+- AWS認定ソリューションアーキテクト -アソシエイト ガイド
+  - https://aws.amazon.com/jp/certification/certified-solutions-architect-associate/
+
+- 試験の範囲と割合
+  - 分野と割合
+    - レジリエントアーキテクチャの設計 30%
+    - 高パフォーマンスアーキテクチャの設計 28%
+    - セキュアなアプリケーションおよびアーキテクチャの設計 24%
+    - コスト最適化アーキテクチャの設計 18%
+  - 試験時間
+    - 130分
+  - 問題数
+    -65問
+  - 解答方式
+    - 択一選択問題/複数選択問題
+  - 合格ライン
+    -720点(得点範囲:100~1000点)
+  - 重要ポイント
+    - サービスと分野の組み合わせで、解答が自動的に決まってくる問題が多数ある。そのため、「分野」というのが問題を解く上で非常に重要。
+
+##1-2 学習教材
+
+### 公式ドキュメント
+- https://aws.amazon.com/jp/documentation
+- 英語サイトの公式ドキュメントが、最も信頼できる1次情報
+
+### オンラインセミナー(AWS Black Belt)
+- Black Beltは、日本で勤務するAWSソリューションアーキテクトがサービス/機能ごとにスライドを利用してオンラインで解説するセミナー
+- AWSクラウドサービス活用資料集
+  - https://aws.amazon.com/jp/aws-jp-introduction/
+- AWSトレーニングの概要
+  - https://aws.amazon.com/jp/training/course-descriptions/
+
+### ホワイトペーパー
+- アーキテクチャ、セキュリティ、コストなどテーマごとにAWSのサービスの使い方や構成の考え方を解説している。
+- AWS Well-Architected フレームワーク
+  - 運用上の優秀性の柱
+  - セキュリティの柱
+  - 信頼性の柱
+  - パフォーマンス効率の柱
+  - コスト最適の柱
+- テキストだと上記と紹介されていたが、最新だと6本の柱で定義されていて、運用上の優秀性の柱がなくなり、以下の2つの柱が定義されている。
+  - オペレーショナルエクセレンスの柱
+  - 持続可能性の柱
+- AWSホワイトペーパー
+  - https://aws.amazon.com/jp/whitepapers/
+- AWS Well-Architected フレームワーク
+  - https://d1.awsstatic.com/whitepapers/ja_JP/architecture/AWS_Well-Architected_Framework.pdf
+- クラウドコンピューティングのためのアーキテクチャー・ベストプラクティス
+  - https://s3.amazonaws.com/awsmedia/jp/wp/AWS_WP_Cloud_BestPractices_JP_v20110531.pdf
+
+### 実機での学習-ハンズオン(チュートリアル&セルフペースラボ)
+- ハンズオンとは用意されたカリキュラムに沿って手を動かしながら学んでいく手法
+- ハンズオンチュートリアル
+  - https://aws.amazon.com/jp/getting-started/hands-on/
+- AWSでは、手軽に自習ができるようにセルフペースラボというものが用意されている
+- セルフペースラボ
+  - https://aws.amazon.com/jp/training/self-paced-labs/
+
+### AWS Hands-on for Beginners
+- AWSのオンライン講座
+  - https://aws.amazon.com/jp/aws-jp-introduction/aws-jp-webinar-hands-on/
+
+### AWS関連書籍
+- Amazon Web Servicesパターン別構築・運用ガイド
+- Amazon Web Services業務システム設計・移行ガイド
+
+##1-3 学習の進め方
+
+### サービス対策
+- 数あるサービスのうち、まずは基本となるサービスを把握すること
+- よくある質問(FAQ)やトラブルシューティングを読むことも有効/試験直前の復習にも最適
+
+### アーキテクチャ対策
+- アーキテクチャを検討する上で重要なのは、6つの観点の何を優先すべきかになる
+- アーキテクチャを問う場合は、何を優先すべきかが問題文に書かれている
+
+##1-4 何に重きをおいて学習すべきか
+
+### 重点学習ポイント
+- サービスについて学ぶ際には、以下の4つの観点を意識する
+  - 高可用性
+  - スケーラビリティとパフォーマンス
+  - コスト効率
+  - セキュリティ
+
+### 最重要サービス
+- IAM(AWS Identity and Access Management)
+  - 権限管理
+  - IAMの機能や考え方を理解せずにAWSを使うと、重大なセキュリティ事故につながる
+- VPC(Amazon Virtual Private Cloud)
+  - ネットワークのコアサービス
+  - VPCを理解していないと絶対に良い設計はできない
+  - 以下の2点は特に重要な考え方
+    - パブリックサブネットとプライベートサブネットを分けることでセキュリティ面の向上を図る点
+    - 複数のアベイラビリティゾーンでAWSサービスを利用して可用性の向上を図る点
+- EC2(+EBS)
+  - アーキテクチャを検討する際に必ず登場するのがEC2(Amazon Elastic Compute Cloud)
+  - Webサーバーやバッチサーバーなど様々な役割を担うため、役割に応じて最適な設計にする必要性あり
+  - ディスク領域としてEBS(Amazon Elastic Block Store)を使うため、一緒に理解を深めるとよい
+  - ECS(Amazon Elastic Container Service)やLambda(サーバーレスでアプリケーションを構築できるサービス)との違いも問われてくる
+- ELB(+Auto Scaling)
+  - EC2をWebサーバーのレイヤーで使う際に、負荷分散の役割をするのがELB(Elastic Load Balancing)
+  - WebサーバーとしてEC2を用いる際は、複数台のインスタンスを配置することが多く、結果としてその前段としてELBが登場する
+  - 動的にサーバーの数を増減させるAuto Scalingも、コスト最適化や可用性の向上という意味で重要
+- RDS(Aurora)
+  - RDS(Amazon Relational Database Service)はデータベースのマネージドサービス
+  - 特に、AWSが独自に開発したAuroraは特徴とその背景をセットで理解しておくとよい
+- S3(+S3 Glacier)
+  - オブジェクトストレージサービスであるS3(Amazon Simple Storage Service)は、アーキテクチャの中核を担うサービス
+  - ユースケースが非常に多いサービスであり、他のサービスと一緒に使うパターンを問われる可能性がある
+
+### 重要なサービス
+- Route 53
+  - AWSのDNSサービス
+  - APIで設定を変更できるので、DNSの向き先を変更することで新旧のシステムを入れ替えるブルーグリーンデプロイメントと相性が良い
+- CloudWatch
+  - 監視サービスであるCloudWatchは、AWSリソースの状態や各種ログの監視を行うサービス
+  - 他のサービスと連携でき、運用設計の中心を担うサービス
+- インフラを自動構築/支援するサービス
+  - CloudFormation
+  - Elastic Beanstalk
+  - OpsWorks
+- 設計でよく使われるマネージドサービス群
+  - CloudFront
+    - CDNサービスで、コンテンツをキャッシュすることで性能を改善したい場面で用いる
+  - ElasticCache
+    - インメモリキャッシュサービスで、データベースの負荷を軽減し、頻繁にやり取りするデータを素早く取り出せるようにする
+  - SQS
+    - キューイングサービス
+  - SNS
+    - Pub/Sub型の通知サービス
