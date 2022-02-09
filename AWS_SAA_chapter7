@@ -1,0 +1,72 @@
+#第7章 データベースサービス
+
+##7-1 AWSのデータベースサービス
+- AWSではデータベースサービスとして8つのサービスを提供している
+
+###データベースの2大アーキテクチャ
+- AWSが提供するデータベースサービスは以下の9つ
+  - Amazon RDS
+  - Amazon Redshift
+  - Amazon DynamoDB
+  - Amazon ElastiCache
+  - Amazon Neptune
+  - Amazon QLDB
+  - Amazon DocumentDB
+  - Amazon Keyspaces
+  - Amazon Timestream
+- アーキテクチャの分類方法は様々であるが、ここではRDBとNoSQLと呼ばれる2つのアーキテクチャに分類
+
+###RDB(Relational Database)
+- 関係データベースと呼ばれる
+- データを表(テーブル)形式で表現し、各表の関係を定義・関連付けすることでデータを管理するデータベース
+- RDBの各種操作にはSQL(Structured Query Language:構造化問い合せ言語)を使用
+- Amazon RDSとAmazon RedshiftがRDBのサービス
+- RDBの主なソフトウェアとしては、Oracle、Microsoft SQL Server、MySQL、PostgreSQLなどが挙げられる
+
+###NoSQL(Not Only SQL)
+- SQLを使わないデータベースアーキテクチャの総称として、NoSQLという言葉が登場
+- 特徴
+  - 柔軟でスキーマレスなデータモデル
+  - 水平スケーラビリティ
+  - 分散アーキテクチャ
+  - 高速な処理
+- Amazon DynamoDB,Amazon ElastiCache,Amazon Neptune,Amazon DocumentDB,Amazon KeyspacesがNoSQLのサービス
+- NoSQLの主なソフトウェア
+  - Redis,Memcached(Key-Valueストア)
+  - Cassandra,HBase(カラム指向データベース)
+  - MongoDB,CouchDB(ドキュメント指向データベース)
+  - Neo4j,Titan(グラフ指向データベース)
+
+###RDBとNoSQLの得意・不得意を理解する
+- これまでのシステムは、データベースと言えばシステムの中にRDBが1つあり、保持しておく必要があるデータはすべてその中に格納するという構成が大半を占めている
+- NoSQLは、RDBを完全に置き換えるものではない
+- アプリケーションのユースケースに応じて複数のデータベースを使い分けるという考え方を持つようにすること
+
+##7-2 RDS
+- Amazon RDSは、AWSが提供するマネージドRDBサービス
+- バックアップやハードウェアメンテナンスなどの運用作業、障害時の復旧作業はAWSが提供するマネージドサービスを利用することで、データベースの運用をシンプルかつ低コストに実現できる
+- RDSでは複数のデータベースエンジンで利用できるが、提供されている機能のうち、RDSでは使用できない機能もあるため、機能制限を確認する必要あり
+- アプリケーションの仕様上、RDSでは使えない機能が必要な場合は、EC2インスタンスにデータベースエンジンをインストールして使うなどの検討が必要
+- DBインスタンスはEC2と同じく、複数のインスタンスタイプから適正なスペックのものを選択できるが、データベースエンジンによっては選択できるインスタンスタイプが限定されることもある
+- 各データベースエンジン機能のサーポートについて
+  - MySQL
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_MySQL.html#MySQL.Concepts.Features
+  - MariaDB
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_MariaDB.html#MariaDB.Concepts.FeatureNonSupport
+  - PostgreSQL
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureExtensions
+  - Oracle 12c
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_Oracle.html#Oracle.Concepts.FeatureSupport.12c
+  - Oracle 18c
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_Oracle.html#Oracle.Concepts.FeatureSupport.18c
+  - Oracle 19c
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_Oracle.html#Oracle.Concepts.FeatureSupport.19c
+  - Microsoft SQL Server
+    - https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.FeatureNonSupport
+
+###RDSで使えるストレージタイプ
+- RDSのデータ保存用ストレージには、EBSを使う
+- EBSの中でもRDSで利用可能なストレージタイプは、汎用SSD、プロビジョンドIOPS SSD、マグネティックの3つ
+- 新しいDBインスタンスを作成するときには基本的にSSDを選択する
+- ストレージの容量は64TB(Microsoft SQL Serverは16TB)まで拡張が可能
+- 拡張はオンライン状態で実施可能であるが、拡張中は若干のパフォーマンス劣化が見られるため、利用頻度が比較的少ない時間帯に実施すること
