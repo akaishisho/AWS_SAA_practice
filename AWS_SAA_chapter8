@@ -159,3 +159,21 @@ IAM(Identity and Access Management)の主要な機能には次の4つ
     - 組織情報の審査を経てから認証する
   - 拡張認証（EV）
     - OVより厳格な審査で認証する。アドレスバーに組織名が表示される（最近のブラウザでは表示されなくなっている）
+
+###ACM
+- AWS Certificate Managerは、AWS自身が認証局となってDV証明書を発行するサービス
+- ACMは2048ビットモジュールRSA鍵とSHA-256のSSL/TLSサーバー証明書の作成・管理を行う
+- ACMの証明書の有効期限は13ヶ月で、自動で更新するように設定可能
+- ACMを利用できるのはAWSのサービスのみであるが、無料というアドバンテージはある
+- ACMの初期設定時には、ドメインの所有の確認が必要
+- ドメイン所有の証明には、メール送信もしくはDNSを利用する
+
+###連携可能なサービス
+- 利用可能なサービス
+  - Elastic Load Balancing(ELB)
+  - Amazon CloudFront
+  - AWS Elastic Beanstalk
+  - Amazon API Gateway
+  - AWS Nitro Enclaves
+- Elastic Beanstalkは、サービス内で利用するELBに対して設定可能
+- ELBのうち、ACMを利用可能なのはALBのみ
